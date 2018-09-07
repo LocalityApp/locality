@@ -51,9 +51,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(PORT, function() {
-  console.log("App listening at localhost: " + PORT);
-});
 
 // Auth0 Authentication and Event Handler - How to set up with handlebars
 // $('document').ready(function() {
