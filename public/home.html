@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/animsition.min.css">
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLQbqN7AkkB4iG82HbHcFhFWxubl2U44&libraries=places"></script>
     
-
-
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/home.css">
 
@@ -81,9 +81,7 @@
 <!-- End Drag Feature -->
 <hr>
 <!-- Start Map -->
-<div >
-    <img src="images/maps-att.png" id="map">
-</div>
+<div id="map"></div>
 <!-- End MAP -->
 
 <!-- THIS SECTION WILL BE WHERE INFORMATION WILL POPULATE WHEN USER CLICKS ON FEATURE IN AN APP -->
@@ -135,6 +133,11 @@
 </div> <!-- .animsition -->
   <!-- End Footer Secgtion -->
   <script src="style.js"></script>
+  <script src="google-maps-service.js"></script>
+
+  <script>
+  google.maps.event.addDomListener(window, "load", initialize)
+  </script>
 
 </body>
 </html>
