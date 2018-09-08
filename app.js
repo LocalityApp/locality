@@ -1,46 +1,114 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+const favicon = require('serve-favicon');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const dotenv = require('dotenv');
+const passport = require('passport');
+const Auth0Strategy = require('passport-auth0');
+const flash = require('connect-flash');
 
+dotenv.load();
+
+// const routes (github) DELETE AFTER
 const indexRouter = require('./routes/index');
+// const user (github) DELETE AFTER
 const usersRouter = require('./routes/users');
 
+// This will configure Passport to use Auth0
+const strategy = new Auth0Strategy(
+	{
+		domain: process.env.AUTH0_DOMAIN,
+		clientID: process.env.AUTH0_CLIENT_ID,
+		clientSecret: process.env.AUTH0_CLIENT_SECRET,
+		callbackURL:
+			process.env.AUTH0_CALLBACK_URL || 'http://localhost:3000/callback'
+	},
+	function (accessToken, refreshToken, extraParams, profile, done) {
+		// accessToken is the token to call Auth0 API (not needed in the most cases)
+		// extraParams.id_token has the JSON Web Token
+		// profile has all the information from the user
+		return done(null, profile);
+	}
+);
+
+passport.use(strategy);
+
+// you can use this section to keep a smaller payload
+passport.serializeUser(function (user, done) {
+	done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+	done(null, user);
+});
+
 const app = express();
+// Set Handlebars. 
+const exphbs = require('express-handlebars');
+
+app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// This allows us to save sessions - users/web tokens, etc.
+app.use(
+	session({
+		secret: 'shhhhhhhhh',
+		resave: true,
+		saveUninitialized: true
+	})
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// Parse application? Do we need this? 
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Parse application/json
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
-// Set Handlebars. 
-const exphbs = require('express-handlebars');
+app.use(flash());
 
-app.engine('handlebars', exphbs({ defaultLayout: 'layout'}));
+app.use(function (req, res, next) {
+	if (req && req.query && req.query.error) {
+		req.flash("error", req.query.error);
+	}
+	if (req && req.query && req.query.error_description) {
+		req.flash("error_description", req.query.error_description);
+	}
+	next();
+});
+
+// Check logged in
+app.use(function (req, res, next) {
+	res.locals.loggedIn = false;
+	if (req.session.passport && typeof req.session.passport.user != 'undefined') {
+		res.locals.loggedIn = true;
+	}
+	next();
+});
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 	next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res) {
+app.use(function (err, req, res) {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -50,27 +118,14 @@ app.use(function(err, req, res) {
 	res.render('error');
 });
 
-
-// Auth0 Authentication and Event Handler - How to set up with handlebars
-// $('document').ready(function() {
-
-//   let webAuth = new auth0.WebAuth({
-//     domain: process.env.AUTH0_DOMAIN,
-//     clientID: process.env.AUTH0_CLIENT_ID,
-//     // Will need to update this in process.env file when we have actual callback URL. Set to localhost for now.
-//     redirectUri: process.env.AUTH0_CALLBACK_URL,
-//     audience: 'https://' + process.env.AUTH0_DOMAIN + '/userinfo',
-//     responseType: 'token id_token',
-//     scope: 'openid'
-//   });
-
-//   let loginBtn = $('#btn-login');
-
-//   loginBtn.click(function(event) {
-//     event.preventDefault();
-//     webAuth.authorize();
-//   });
-
-// });
+// production error handler
+// no stacktraces leaked to user
+app.use(function (err, req, res, next) {
+	res.status(err.status || 500);
+	res.render('error', {
+		message: err.message,
+		error: {}
+	});
+});
 
 module.exports = app;

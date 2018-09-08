@@ -83,7 +83,9 @@
 <!-- Start Map -->
 <div id="map"></div>
 <!-- End MAP -->
+<div id="root">
 
+</div>
 <!-- THIS SECTION WILL BE WHERE INFORMATION WILL POPULATE WHEN USER CLICKS ON FEATURE IN AN APP -->
 <br>
 
@@ -132,12 +134,61 @@
   </footer>
 </div> <!-- .animsition -->
   <!-- End Footer Secgtion -->
+<<<<<<< HEAD
   <script src="style.js"></script>
   <script src="google-maps-service.js"></script>
 
   <script>
   google.maps.event.addDomListener(window, "load", initialize)
   </script>
+=======
+  <!-- development version, includes helpful console warnings -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-slicksort@latest/dist/vue-slicksort.min.js"></script>
+  <script>
+    const SortableList = {
+      mixins: [ContainerMixin],
+      template: `
+        <ul class="list">
+          <slot />
+        </ul>
+      `,
+    };
 
+    const SortableItem = {
+      mixins: [ElementMixin],
+      props: ['item'],
+      template: `
+        <li class="list-item">{{item}}</li>
+      `,
+    };
+>>>>>>> 4041d6d6862738f78113e5e3dd492f7dd300a5e3
+
+    const ExampleVue = {
+      name: 'Example',
+      template: `
+        <div class="root">
+          <SortableList lockAxis="y" v-model="items">
+            <SortableItem v-for="(item, index) in items" :index="index" :key="index" :item="item"/>
+          </SortableList>
+        </div>
+      `,
+      components: {
+        SortableItem,
+        SortableList,
+      },
+      data() {
+        return {
+          items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8'],
+        };
+      },
+    };
+
+    const app = new Vue({
+      el: '#root',
+      render: (h) => h(ExampleVue),
+    });
+  </script>
+  <script src="style.js"></script>
 </body>
 </html>
