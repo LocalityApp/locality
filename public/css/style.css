@@ -1,3 +1,6 @@
+/*-----------------------------------------------------------------------------------*/
+/*  INDEX STYLING
+/*-----------------------------------------------------------------------------------*/
 body {
   background: #fff;
   font-family: "Mukta Mahee", arial, sans-serif;
@@ -12,10 +15,7 @@ body {
   background: #65c0ba;
 }
 
-::selection {
-  color: #fff;
-  background: #65c0ba;
-}
+
 
 a {
   -webkit-transition: .3s all ease;
@@ -60,108 +60,12 @@ h1, h2, h3, h4, h5 {
   border-width: 2px;
 }
 
-.btn.btn-primary:hover {
-  background: #65c0ba;
-}
 
-.btn, .form-control {
-  outline: none;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
-}
-
-.btn:focus, .btn:active, .form-control:focus, .form-control:active {
-  outline: none;
-}
 
 #bike-home {
   height: 650px;
   width: 500px;
   border-radius: 6px;
-}
-
-textarea.form-control {
-  height: inherit;
-}
-
-.site-header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 60px 0;
-  z-index: 2;
-}
-
-.menu-open .site-header {
-  position: fixed;
-}
-
-.site-logo a {
-  font-size: 30px;
-  color: #fff;
-  font-weight: bold;
-  line-height: 1;
-  font-family: "Abril Fatface", times, serif;
-}
-
-.site-navbar {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff;
-  min-height: 300px;
-  overflow-y: scroll;
-}
-
-.site-navbar nav {
-  text-align: center;
-}
-
-.site-navbar nav .menu {
-  font-family: "Abril Fatface", times, serif;
-}
-
-.site-navbar nav .menu li a {
-  color: #000;
-  font-size: 40px;
-  padding: 5px 10px;
-  position: relative;
-}
-
-.site-navbar nav .menu li a:hover {
-  color: #65c0ba;
-}
-
-.site-navbar nav .menu li.active a {
-  color: #65c0ba;
-}
-
-.site-navbar nav .menu li.active a:before {
-  width: 100%;
-}
-
-.site-navbar .extra-info a {
-  color: #000;
-}
-
-.site-navbar .extra-info ul li a {
-  color: #000;
-}
-
-.site-navbar .extra-info h3 {
-  font-family: "Mukta Mahee", arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: .2em;
-  color: #adb5bd;
-  margin-bottom: 30px;
-}
-
-.site-navbar .extra-info p {
-  color: #212529;
 }
 
 .full-height {
@@ -253,52 +157,7 @@ textarea.form-control {
   }
 }
 
-@media (max-width: 991.98px) {
-  .lead {
-    font-size: 16px;
-  }
-}
 
-.visit-section .visit {
-  position: relative;
-  top: 0;
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease;
-}
-
-.visit-section .visit a {
-  color: #000;
-}
-
-.visit-section .visit a:hover {
-  color: #65c0ba;
-}
-
-.visit-section .visit img {
-  -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 15px;
-}
-
-.visit-section .visit h3 {
-  font-size: 20px;
-  margin-bottom: 0;
-}
-
-.visit-section .visit:hover, .visit-section .visit:focus {
-  top: -1;
-}
-
-.visit-section .reviews-star span {
-  font-size: 18px;
-  color: #65c0ba;
-}
-
-.visit-section .reviews-count {
-  color: #ccc;
-  font-style: italic;
-}
 
 .primary-bg-text p {
   color: rgba(255, 255, 255, 0.7);
@@ -415,7 +274,7 @@ textarea.form-control {
 
 
 
-
+/* FOOTER START */
 
 .footer-section {
   background: #1a1a1a;
@@ -514,4 +373,10 @@ textarea.form-control {
 .ftco-img-flaticon img {
   width: 70px;
 }
+/*-----------------------------------------------------------------------------------*/
+/*  HOME PAGE STYLING
+/*-----------------------------------------------------------------------------------*/
 
+.navbar {
+  color: black;
+}
