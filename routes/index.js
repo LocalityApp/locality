@@ -11,10 +11,9 @@ router.get('/', function (req, res) {
 
 router.get('/login', passport.authenticate('auth0', {
 	scope: 'openid email profile'
-}),
-	function (req, res) {
-		res.redirect("/");
-	});
+}), function (req, res) {
+	res.redirect('/');
+});
 
 router.get('/logout', function (req, res) {
 	req.logout();
@@ -26,13 +25,13 @@ router.get('/callback',
 		failureRedirect: '/failure'
 	}),
 	function (req, res) {
-		res.redirect(req.session.returnTo || '/user');
+		res.redirect(req.session.returnTo || '/users');
 	}
 );
 
 router.get('/failure', function (req, res) {
-	var error = req.flash("error");
-	var error_description = req.flash("error_description");
+	var error = req.flash('error');
+	var error_description = req.flash('error_description');
 	req.logout();
 	res.render('failure', {
 		error: error[0],
@@ -40,10 +39,10 @@ router.get('/failure', function (req, res) {
 	});
 });
 
-router.get('/user', ensureLoggedIn, function (req, res, next) {
-    res.render('user', {
-        user: req.user,
-        userProfile: JSON.stringify(req.user, null, '  ')
-    });
+router.get('/user', ensureLoggedIn, function (req, res) {
+	res.render('user', {
+		user: req.user,
+		userProfile: JSON.stringify(req.user, null, '  ')
+	});
 });
 module.exports = router;
