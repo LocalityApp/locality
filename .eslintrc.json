@@ -19,7 +19,7 @@
         "no-undef": "warn",
         "no-console":"off",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
