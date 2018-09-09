@@ -6,31 +6,35 @@ const pwd = process.env.MONGO_PWD;
 
 const uri = `mongodb+srv://${userName}:${pwd}@cluster0-lmodr.mongodb.net/admin`;
 
-const createUser = (emailAddress, userData) =>{
+const createUser = (emailAddress, userData={}) =>{
 	// Should create some stuff
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
-		collection.find({'email': emailAddress}).toArray(function (err, result) {
-			if (err) throw err;
-		
-			console.log(result);
-			if(result.length == 0 && userData){
-				console.log('we should create a user');
-			}
-		});
+		try{
+			collection.insertOne(
+				{'email': emailAddress,
+				'userData': userData
+				}
+			);
+		}
+		catch(e){
+			throw e.message;
+		}
+		console.log(`User ${emailAddress} created`);
 		client.close();
 	});
 };
 
-const readUserData = (emailAddress, callback) => {
+const readUserData = (emailAddress, userData = {}) => {
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
 		collection.find({'email': emailAddress}).toArray(function (err, result) {
 			if (err) throw err;
 		
 			console.log(result);
-			if(result.length == 0 && callback){
+			if(result.length == 0){
 				console.log('we should create a user');
+				createUser(emailAddress, userData);
 			}
 		});
 		client.close();
@@ -41,39 +45,37 @@ const updateUserData = (emailAddress, userData) => {
 	// Should update some stuff
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
-		collection.find({'email': emailAddress}).toArray(function (err, result) {
+		collection.updateOne(
+			{'email': emailAddress},
+			{'userData': userData}).toArray(function (err, result) {
 			if (err) throw err;
-		
 			console.log(result);
-			if(result.length == 0 && userData){
-				console.log('we should create a user');
-			}
-			
 		});
 		client.close();
 	});
 };
 
-const deleteUser = (emailAddress, userData) => {
+const deleteUser = (emailAddress) => {
 	// Destroy this user
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
-		collection.find({'email': emailAddress}).toArray(function (err, result) {
-			if (err) throw err;
-		
-			console.log(result);
-			if(result.length == 0 && userData){
-				console.log('we should create a user');
-			}
-			
-		});
+		try{
+			collection.deleteOne({'email' : emailAddress});
+		}
+		catch (e){
+			throw e.message;
+		}
+		console.log(`User ${emailAddress} deleted`);
 		client.close();
 	});
 };
 
 
-
-readUserData('smanele@hotmail.com');
+// createUser('smankele@hotmail.com');
+// readUserData('smankele@hotmail.com');
+// readUserData('smanele@hotmail.com');
+// updateUser('smankele@hotmail.com');
+// deleteUser('smankele@hotmail.com');
 
 module.exports = {
 	'createUser': createUser,
