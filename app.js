@@ -17,6 +17,7 @@ dotenv.load();
 const indexRouter = require('./routes/index');
 // const user (github) DELETE AFTER
 const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
 
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
@@ -50,10 +51,11 @@ const app = express();
 // Set Handlebars. 
 const exphbs = require('express-handlebars');
 
-app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs(
+	{defaultLayout: 'layout'}
+));
+// view engine setup
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -77,6 +79,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 
 // Parse application/json

@@ -1,0 +1,18 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    $(document).ready(function (){
+        
+    });
+    setTimeout(function(){
+        Vue.component('button-counter', {
+        data: function () {
+            return {
+            count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        });
+    }, 3000);
+</script>
+
+<button-counter></button-counter>
