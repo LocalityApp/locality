@@ -45,35 +45,41 @@
 <br>
 <!-- Start Feature -->
 <div class="container">
-  <div class="row">
-      <div class="slides col-sm-4 col-md-2" > 
+  <div class="row ui-state-default" id="sortable">
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable1"> 
         <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/safety.svg" class="img-fluid mb-4" draggable="true">
+          <img src="images/svg/safety.svg" class="img-fluid mb-4">
+          <p>Safety</p>
         </div>
       </div>
-      <div class="slides col-sm-4 col-md-2" >
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable2">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/school.svg" class="img-fluid mb-4">
+          <p>Schools</p>
         </div>
       </div>
-      <div class="slides col-sm-4 col-md-2" >
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable3">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/nightlife.svg" class="img-fluid mb-4">
+          <p>Restaurants & Nightlife</p>
         </div>
       </div>
-      <div class="slides col-sm-4 col-md-2" >
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable4">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/services.svg" class="img-fluid mb-4">
+          <p>Services</p>
         </div>
       </div>
-      <div class="slides col-sm-4 col-md-2" >
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable5">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/transport.svg" class="img-fluid mb-4">
+          <p>Walkability & Public Transportation</p>
         </div>
       </div>
-      <div class="slides col-sm-4 col-md-2" >
+      <div class="col-sm-4 col-md-2 ui-state-default" id="draggable6">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/bike.svg" class="img-fluid mb-4">
+          <p>Parks</p>
         </div>
       </div>
   </div>
@@ -134,57 +140,12 @@
   </footer>
 </div> <!-- .animsition -->
   <!-- End Footer Secgtion -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="style.js"></script>
   <script src="google-maps-service.js"></script>
   <script>
   google.maps.event.addDomListener(window, "load", initialize)
   </script>
-  <!-- development version, includes helpful console warnings -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-slicksort@latest/dist/vue-slicksort.min.js"></script>
-  <script>
-    const SortableList = {
-      mixins: [ContainerMixin],
-      template: `
-        <ul class="list">
-          <slot />
-        </ul>
-      `,
-    };
 
-    const SortableItem = {
-      mixins: [ElementMixin],
-      props: ['item'],
-      template: `
-        <li class="list-item">{{item}}</li>
-      `,
-    };
-
-    const ExampleVue = {
-      name: 'Example',
-      template: `
-        <div class="root">
-          <SortableList lockAxis="y" v-model="items">
-            <SortableItem v-for="(item, index) in items" :index="index" :key="index" :item="item"/>
-          </SortableList>
-        </div>
-      `,
-      components: {
-        SortableItem,
-        SortableList,
-      },
-      data() {
-        return {
-          items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8'],
-        };
-      },
-    };
-
-    const app = new Vue({
-      el: '#root',
-      render: (h) => h(ExampleVue),
-    });
-  </script>
-  <script src="style.js"></script>
 </body>
 </html>
