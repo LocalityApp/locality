@@ -3,7 +3,7 @@ const passport = require('passport');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const router = express.Router();
 
-/* GET user profile. */
+// GET user profile 
 router.get('/', ensureLoggedIn, function (req, res, next) {
     res.render('home', {
         user: req.user,
