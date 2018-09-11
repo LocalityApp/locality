@@ -1,10 +1,31 @@
-<img src="{{user.picture}}">>
+<div id="results" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align: left;">
+                    <b>Hi {{user.nickname}}!</b>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <img id="userImages" src="{{user.picture}}" alt="Profile Picture" style="height: 300px; width: 300px;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<img src="{{user.picture}}"/>
 
 <p>
     <h2>
         {{user.nickname}}
     </h2>
+    {{!--
     <h3>
         {{userProfile}}
-    </h3>
+    </h3> --}}
 </p>
+<a href="home.html"><button>Start Your Search</button></a>
