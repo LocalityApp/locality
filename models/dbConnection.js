@@ -25,12 +25,12 @@ const createUser = (emailAddress, userData={}) =>{
 	});
 };
 
-const readUserData = (emailAddress, userData = {}) => {
+const readUserData = (emailAddress, userData = {}, callback = null) => {
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
 		collection.find({'email': emailAddress}).toArray(function (err, result) {
 			if (err) throw err;
-		
+			callback.json(result);
 			console.log(result);
 			if(result.length == 0){
 				console.log('we should create a user');
