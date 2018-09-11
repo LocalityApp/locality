@@ -17,6 +17,7 @@ dotenv.load();
 const indexRouter = require('./routes/index');
 // const user (github) DELETE AFTER
 const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
 
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
@@ -50,10 +51,11 @@ const app = express();
 // Set Handlebars. 
 const exphbs = require('express-handlebars');
 
-app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs(
+	{defaultLayout: 'layout'}
+));
+// view engine setup
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -73,9 +75,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 
 // Parse application/json
@@ -85,10 +89,10 @@ app.use(flash());
 
 app.use(function (req, res, next) {
 	if (req && req.query && req.query.error) {
-		req.flash("error", req.query.error);
+		req.flash('error', req.query.error);
 	}
 	if (req && req.query && req.query.error_description) {
-		req.flash("error_description", req.query.error_description);
+		req.flash('error_description', req.query.error_description);
 	}
 	next();
 });
@@ -120,7 +124,7 @@ app.use(function (err, req, res) {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
 	res.status(err.status || 500);
 	res.render('error', {
 		message: err.message,
