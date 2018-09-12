@@ -1,50 +1,59 @@
-const request = require('request');
-const dotenv = require('dotenv'); 
 
-dotenv.load();
+//
+const request = require('request-promise');
+const createFeatureObj = require('./createFeatureObj');
+require('dotenv').config();
 
-const searchRestaurants = (lat="", lng="", type="") => {
-    const options = {
-        url: 'https://api.yelp.com/v3/businesses/search?term='+type+'&latitiude='+lat+'&longitude='+lng,
-        headers: {
-          'User-Agent': 'request',
-          'Authorization': `Bearer ${process.env.YELP_KEY}`
-        }
-      };
-    
-      function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          var info = JSON.parse(body);
-          console.log(info);
-        }
-      }
-
-      request(options, callback);
+//
+var geoJSON = {
+  "type": "FeatureCollection", 
+  "features": []
 };
 
-const generalSearch = str => {
-    const options = {
-        url: 'https://api.yelp.com/v3/businesses/north-india-restaurant-san-francisco?',
-        headers: {
-          'User-Agent': 'request',
-          'Authorization': `Bearer ${process.env.YELP_KEY}`
-        }
-      };
-    
-      function callback(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          var info = JSON.parse(body);
-          console.log(info);
-        }
-      }
+//
+const amenities = 'arts|food|nightlife|restaurants';
+// const services = 'automotive|bicycles|financialservices|health|homeservices|professional|shopping';
+// const education = 'education';
+// const transit = 'trainstations|busstations|airports';
+// const safety = 'firedepartments|policedepartments';
 
-      request(options, callback);
-    
-};
+//
+const API_ENDPOINT = 'https://api.yelp.com/v3/businesses/search?limit=50&radius=22000&latitude=39.802518&longitude=-105.076211&categories='+amenities;
 
+//
+module.exports = go = async (cb) => {
+  geoJSON.features = await getPoints();
+  cb(geoJSON);
+}
 
-searchRestaurants('39.802518', '-105.076211', 'delis');
-// generalSearch(' ');
-module.exports = {
-    searchRestaurants:searchRestaurants
+const getPoints = async () => {
+  let records = [];
+  let keepGoing = true;
+  let offset = 0;
+  while (keepGoing) {
+    let response = await reqPoints(offset)
+    await records.push.apply(records, response);
+    offset += 50;
+    if (offset >= 100) {
+      keepGoing = false;
+      return records;
+    }
+  }
+}
+
+const reqPoints = async(offset) => {
+  const pointReq = {
+    url: `${API_ENDPOINT}&offset=${offset}`, 
+    json: true, 
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': `Bearer ${process.env.YELP_KEY}`
+    }
+  };
+  let payload = await request(pointReq);
+  var pointFeatures = [];
+  payload.businesses.forEach(function(business) {
+    pointFeatures.push(createFeatureObj(business));
+  });
+  return pointFeatures;
 };
