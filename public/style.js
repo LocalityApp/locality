@@ -1,5 +1,5 @@
 $(document).ready(function(){
-$("#sortable").sort({
+$('#sortable').sort({
   revert: true
 }); 
 

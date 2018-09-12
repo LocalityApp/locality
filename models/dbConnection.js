@@ -16,7 +16,7 @@ const createUser = (UID, userData={}, cb) =>{
 				'userData': userData
 				}
 			);
-			readUserData(UID, "", cb);
+			readUserData(UID, '', cb);
 		}
 		catch(e){
 			throw e.message;

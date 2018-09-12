@@ -31,7 +31,7 @@ const getPoints = async () => {
   let keepGoing = true;
   let offset = 0;
   while (keepGoing) {
-    let response = await reqPoints(offset)
+    let response = await reqPoints(offset);
     await records.push.apply(records, response);
     offset += 50;
     if (offset >= 100) {
