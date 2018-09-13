@@ -272,7 +272,17 @@ h1, h2, h3, h4, h5 {
   letter-spacing: .1em;
 }
 
+/* MAP */
+#map {
+  height: 100%;
+  width: 100%;
+}
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 /* FOOTER START */
 
@@ -376,7 +386,58 @@ h1, h2, h3, h4, h5 {
 /*-----------------------------------------------------------------------------------*/
 /*  HOME PAGE STYLING
 /*-----------------------------------------------------------------------------------*/
-
-.navbar {
-  color: black;
+  /* NAV BAR */
+  .navbar{
+    background: white;
 }
+.navbar-brand {
+  color: #000;
+  font-family: "Abril Fatface", times, serif;
+  font-size: 30px;
+}
+.navbar-nav {
+    color: rgb(216, 192, 255);
+}
+
+@media (max-width: 991.98px) {
+  .site-hero-inner .heading {
+    font-size: 40px;
+  }
+}
+
+.site-hero-inner .sub-heading {
+  font-size: 30px;
+  font-weight: 200;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.section {
+  padding: 7em 0;
+}
+
+
+/* DRAG FEATURE */
+
+.ui-state-default {
+cursor: pointer;
+cursor: hand;
+}
+
+/* MAP */
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.bold {
+  color: rgb(21, 43, 79);
+}
+
+#sortable > div { float: left; }
