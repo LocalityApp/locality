@@ -33,8 +33,9 @@ router.get('/search', (req, res, status) => {
 });
 
 router.get('/userSettings', ensureLoggedIn, (req, res, status) => {
-  // You may have noticed that we included two new require files, one of them being request. Request allows us to easily make HTTP requests. In our instance here, we are using the Huffington Post's API to pull the latest election results, and then we're sending that data to our polls view.
-  // The second require was the connect-ensure-loggedin library, and from here we just required a method called ensureLoggedIn, which will check and see if the current user is logged in before rendering the page. If they are not, they will be redirected to the login page. We are doing this in a middleware pattern, we first call the ensureLoggedIn method, wait for the result of that action, and finally execute our /polls controller.
+  // You may have noticed that we included two new require files, one of them being request. Request allows us to easily make HTTP requests. 
+  // The second require was the connect-ensure-loggedin library, and from here we just required a method called ensureLoggedIn, which will check and see if the current user is logged in before rendering the page. 
+  // If they are not, they will be redirected to the login page. We are doing this in a middleware pattern, we first call the ensureLoggedIn method.
   if (req.user) {
     db.createUser('Test@test.com', { somestuff: 'sjsjs' });
     res.json({
