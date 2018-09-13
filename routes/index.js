@@ -54,7 +54,7 @@ router.get('/user', ensureLoggedIn, function (req, res) {
 });
 
 router.get('/home', function (req, res) {
-	res.render('home', { title: 'Locality: Find You Neighborhood' });
+	res.render('home', { title: 'Locality: Find Your Neighborhood' });
 });
 
 
