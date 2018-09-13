@@ -110,6 +110,29 @@
     </div>
 </div>
 {{/if}}
+<!-- END MODAL FOR DISPLAYING USER INFORMATION -->
+
+<!-- MODAL FOR NOTIFYING USER OF UPDATED USER SETTINGS -->
+{{#if user}}
+<div id="userSettings" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align: left;">
+                    <b>Hi {{user.userData.nickname}}!</b>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <p>Success! Your settings have been saved.</p>
+            </div>
+            <div class="modal-footer">
+                <span><button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button></span>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
 
 <!-- Importing dragable feature for icons -->
 <script src="style.js"></script>
@@ -122,18 +145,20 @@
 <!-- Event Handler to Change User Settings -->
 <script>
     // Event handler for submit button.
-  $("#addBurger").on("submit", function (event) {
+  $("#updateUserSettings").on("submit", function (event) {
     event.preventDefault();
-    let newBurger = {
-      burger_name: $("#burger").val().trim()
+    let user = {
+      nickname: $("#userNickname").val().trim(),
+      workAddress: $("#workAddress").val().trim(),
+      homeAddress: $("#homeAddress").val().trim()
     };
     // Send the POST Request
-    $.ajax("/api/burgers", {
+    $.ajax("/api/userSettings", {
       type: "POST",
-      data: newBurger
+      data: newUser
     }).then(
       function () {
-        console.log("Created new Burger", newBurger);
+        console.log("Created new User", newUser);
         //Reload the page to get the updated list.
         location.reload();
       }
@@ -141,5 +166,4 @@
   });
 </script>
 </body>
-
 </html>
