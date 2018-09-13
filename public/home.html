@@ -8,16 +8,21 @@
     <link href="https://fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400|Abril+Fatface:400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/animsition.min.css">
 
+   
+    
+    
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLQbqN7AkkB4iG82HbHcFhFWxubl2U44&libraries=places"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js" integrity="sha256-0vBSIAi/8FxkNOSKyPEfdGQzFDak1dlqFKBYqBp1yC4=" crossorigin="anonymous"></script>
+
+
     <!-- Theme Style -->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/Favicon.png">
@@ -45,37 +50,51 @@
 <br>
 <!-- Start Feature -->
 <div class="container">
+  <div class="row ui-state-default" id="sortable">
+      <div class="col-sm-4 col-md-2 ui-state-default" > 
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/safety.svg" class="img-fluid mb-4 ">
+          <p>Safety</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/school.svg" class="img-fluid mb-4 ">
+          <p>Schools</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/nightlife.svg" class="img-fluid mb-4 ">
+          <p>Restaurants & Nightlife</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/services.svg" class="img-fluid mb-4  ">
+          <p>Services</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/transport.svg" class="img-fluid mb-4 ">
+          <p>Walkability & Public Transportation</p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/bike.svg" class="img-fluid mb-4 ">
+          <p>Parks</p>
+        </div>
+      </div> 
+  </div>
+</div>
+<div class="container">
   <div class="row">
-      <div class="slides col-sm-4 col-md-2" > 
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/safety.svg" class="img-fluid mb-4" draggable="true">
-        </div>
-      </div>
-      <div class="slides col-sm-4 col-md-2" >
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/school.svg" class="img-fluid mb-4">
-        </div>
-      </div>
-      <div class="slides col-sm-4 col-md-2" >
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/nightlife.svg" class="img-fluid mb-4">
-        </div>
-      </div>
-      <div class="slides col-sm-4 col-md-2" >
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/services.svg" class="img-fluid mb-4">
-        </div>
-      </div>
-      <div class="slides col-sm-4 col-md-2" >
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/transport.svg" class="img-fluid mb-4">
-        </div>
-      </div>
-      <div class="slides col-sm-4 col-md-2" >
-        <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/bike.svg" class="img-fluid mb-4">
-        </div>
-      </div>
+    <div class="col-md-12 text-center">
+      <p> Sort your preferences with <b class="bold">least preferred on the left</b> and <b class="bold">most preferred on the right.</b></p>
+    </div>
+
   </div>
 </div>
 <!-- End Drag Feature -->
@@ -83,9 +102,7 @@
 <!-- Start Map -->
 <div id="map"></div>
 <!-- End MAP -->
-<div id="root">
 
-</div>
 <!-- THIS SECTION WILL BE WHERE INFORMATION WILL POPULATE WHEN USER CLICKS ON FEATURE IN AN APP -->
 <br>
 
@@ -132,59 +149,14 @@
       </div>
     </div>
   </footer>
-</div> <!-- .animsition -->
+</div> <!-- .animation -->
   <!-- End Footer Secgtion -->
+
   <script src="style.js"></script>
   <script src="google-maps-service.js"></script>
   <script>
   google.maps.event.addDomListener(window, "load", initialize)
   </script>
-  <!-- development version, includes helpful console warnings -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-slicksort@latest/dist/vue-slicksort.min.js"></script>
-  <script>
-    const SortableList = {
-      mixins: [ContainerMixin],
-      template: `
-        <ul class="list">
-          <slot />
-        </ul>
-      `,
-    };
 
-    const SortableItem = {
-      mixins: [ElementMixin],
-      props: ['item'],
-      template: `
-        <li class="list-item">{{item}}</li>
-      `,
-    };
-
-    const ExampleVue = {
-      name: 'Example',
-      template: `
-        <div class="root">
-          <SortableList lockAxis="y" v-model="items">
-            <SortableItem v-for="(item, index) in items" :index="index" :key="index" :item="item"/>
-          </SortableList>
-        </div>
-      `,
-      components: {
-        SortableItem,
-        SortableList,
-      },
-      data() {
-        return {
-          items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8'],
-        };
-      },
-    };
-
-    const app = new Vue({
-      el: '#root',
-      render: (h) => h(ExampleVue),
-    });
-  </script>
-  <script src="style.js"></script>
 </body>
 </html>
