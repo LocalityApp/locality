@@ -16,7 +16,7 @@ function getCentroids(cluster) {
         if (Object.keys(centroids).indexOf(element.properties.cluster) === -1) {
             var centroidNumber = element.properties.cluster;
             centroids[centroidNumber] = element.properties.centroid;
-        };
-  })
+        }
+  });
   console.log(centroids);
-};
+}

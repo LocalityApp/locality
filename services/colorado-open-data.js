@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.load();
 
-const searchRestaurants = (lat="", lng="", type="") => {
+const searchRestaurants = (lat='', lng='', type='') => {
     const options = {
         url: 'https://api.yelp.com/v3/businesses/search?term='+type+'&latitiude='+lat+'&longitude='+lng,
         headers: {
