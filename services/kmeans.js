@@ -1,13 +1,25 @@
 
 //
 var turf = require('@turf/turf');
+var superSearch = require('../controllers/superSearch');
+var request = require('request-promise');
 
 //
-module.exports = function kMeansClustering(ptsJSON) {
+var neighborhoods = [];
+//
+module.exports = go = (geoJSON) => {
+    centroids = kMeansClustering(geoJSON);
+    for (var centroid in centroids) {
+        let response = superSearch(centroid);
+        neighborhoods.push(response);
+    }
+}
+
+//
+function kMeansClustering(ptsJSON) {
   var options = {numberOfClusters: 5};
   var clustered = turf.clustersKmeans(ptsJSON, options);
-//   getCentroids(clustered);
-console.log(JSON.stringify(clustered));
+  return getCentroids(clustered);
 };
 
 //
@@ -19,6 +31,5 @@ function getCentroids(cluster) {
             centroids[centroidNumber] = element.properties.centroid;
         };
     })
-    console.log(centroids);
-    // return centroids;
+    return centroids;
 };

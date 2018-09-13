@@ -11,19 +11,11 @@ var geoJSON = {
 };
 
 //
-// const nightlife = 'barcrawl|restaurants|bars|beergardens|coffeeshops|comedyclubs|danceclubs|karaoke|pianobars|poolhalls|musicvenues|beer_and_wine|breweries|coffee|cannabisdispensaries';
-// const services = 'autorepair|servicestations|bikeshop|banks|insurance|health|homeservices|vet|accountants|postoffices';
-// const attractions = 'waterparks|zoos|amateursportsteams|amusementparks|aquariums|beaches|arcades|galleries|movietheaters|museums|theater|libraries';
-// const education = 'collegeuniv|elementaryschools|highschools|preschools|privateschools';
-// const transit = 'trainstations|busstations|airports|bikesharing|metrostations|publictransport|trains';
-// const parks = 'parks|lakes|baseballfields|basketballcourts|dog_parks|skate_parks|playgrounds|publicplazas|swimmingpools|tennis|';
-
-//
 const API_ENDPOINT = 'https://api.yelp.com/v3/businesses/search?limit=50&radius=22000&latitude=39.7392&longitude=-104.9903';
 
 //
-module.exports = go = async (context, cb) => {
-  geoJSON.features = await getPoints(context);
+module.exports = go = (context, cb) => {
+  geoJSON.features = getPoints(context);
   cb(geoJSON);
 };
 
