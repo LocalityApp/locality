@@ -17,6 +17,7 @@ function getCentroids(cluster) {
             var centroidNumber = element.properties.cluster;
             centroids[centroidNumber] = element.properties.centroid;
         };
-  })
-  console.log(centroids);
+    })
+    console.log(centroids);
+    // return centroids;
 };

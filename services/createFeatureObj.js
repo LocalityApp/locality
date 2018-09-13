@@ -5,7 +5,7 @@ module.exports = function createFeatureObj(busObj) {
     "type": "Feature", 
     "geometry": {
       "type": "Point", 
-      "coordinates": [busObj.coordinates.latitude, busObj.coordinates.longitude]
+      "coordinates": [busObj.coordinates.longitude, busObj.coordinates.latitude]
     },
     "properties": {
       "name": busObj.name
