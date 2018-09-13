@@ -24,38 +24,52 @@
 <br>
 <!-- Start Feature -->
 <div class="container">
-    <div class="row">
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/safety.svg" title="Safety" class="img-fluid mb-4" draggable="true">
-            </div>
+  <div class="row ui-state-default" id="sortable">
+      <div class="col-sm-4 col-md-2 ui-state-default" > 
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/safety.svg" class="img-fluid mb-4 ">
+          <p>Safety</p>
         </div>
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/school.svg" title="Schools" class="img-fluid mb-4">
-            </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/school.svg" class="img-fluid mb-4 ">
+          <p>Schools</p>
         </div>
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/nightlife.svg"  title="Attractions" class="img-fluid mb-4">
-            </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/nightlife.svg" class="img-fluid mb-4 ">
+          <p>Restaurants & Nightlife</p>
         </div>
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/services.svg" title="Services" class="img-fluid mb-4">
-            </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/services.svg" class="img-fluid mb-4  ">
+          <p>Services</p>
         </div>
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/transport.svg" title="Public Transportation" class="img-fluid mb-4">
-            </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/transport.svg" class="img-fluid mb-4 ">
+          <p>Walkability & Public Transportation</p>
         </div>
-        <div class="slides col-sm-4 col-md-2">
-            <div class="d-block ftco-img-flaticon">
-                <img src="images/svg/bike.svg" title="Parks" class="img-fluid mb-4">
-            </div>
+      </div>
+      <div class="col-sm-4 col-md-2 ui-state-default" >
+        <div class="d-block ftco-img-flaticon">
+          <img src="images/svg/bike.svg" class="img-fluid mb-4 ">
+          <p>Parks</p>
         </div>
+      </div> 
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p> Sort your preferences with <b class="bold">least preferred on the left</b> and <b class="bold">most preferred on the right.</b></p>
     </div>
+
+  </div>
 </div>
 <!-- End Drag Feature -->
 <hr>
@@ -79,9 +93,9 @@
             <div class="modal-body">
                 <p>Edit Your Locality Settings</p>
                 <form id="editUserSettings">
-                    <input type="text" class="form-control modalForm" id="userNickname" placeholder="Edit Your Name">
-                    <input type="text" class="form-control modalForm" id="homeAddress" placeholder="Add Your Home Address">
-                    <input type="text" class="form-control modalForm" id="workAddress" placeholder="Add Your Work Address">
+                    <input type="text" class="form-control modalForm" id="userNickname" value="{{userData.nickname}}" placeholder="Edit Your Name">
+                    <input type="text" class="form-control modalForm" id="homeAddress" value="{{userData.homeAddress}}" placeholder="Add Your Home Address">
+                    <input type="text" class="form-control modalForm" id="workAddress" value="{{userData.workAddress}}" placeholder="Add Your Work Address">
                 </form>
             </div>
             <div class="modal-footer">
@@ -139,6 +153,7 @@
 </div>
 <!-- .animation -->
 <!-- End Footer Secgtion -->
+<script src="style.js"></script>
 <script src="google-maps-service.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLQbqN7AkkB4iG82HbHcFhFWxubl2U44&libraries=places"></script>
 <script>
