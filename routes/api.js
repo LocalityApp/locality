@@ -53,4 +53,9 @@ router.get('/userSettings', ensureLoggedIn, (req, res, status) => {
 
 });
 
+router.post('/scores', (req, res, status) => {
+  console.log(req.body);
+  res.json(req.body);
+});
+
 module.exports = router;

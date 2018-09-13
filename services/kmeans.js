@@ -6,7 +6,8 @@ var turf = require('@turf/turf');
 module.exports = function kMeansClustering(ptsJSON) {
   var options = {numberOfClusters: 5};
   var clustered = turf.clustersKmeans(ptsJSON, options);
-  getCentroids(clustered);
+//   getCentroids(clustered);
+console.log(JSON.stringify(clustered));
 };
 
 //
