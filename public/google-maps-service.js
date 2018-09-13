@@ -23,6 +23,6 @@ function initialize() {
     };
 
     // instance of Maps service center + zoom to userInputLocation
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 }

@@ -9,6 +9,8 @@
     "test": "npm run lint"
   },
   "dependencies": {
+    "@turf/clusters-kmeans": "^6.0.1",
+    "@turf/turf": "^5.1.6",
     "ajv": "^6.5.3",
     "ajv-keywords": "^3.2.0",
     "auth0": "^2.12.0",
@@ -33,6 +35,8 @@
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-auth0": "^1.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "serve-favicon": "^2.5.0",
     "vue": "^2.5.17",
     "vue-slicksort": "^0.1.10"
