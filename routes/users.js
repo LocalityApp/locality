@@ -18,7 +18,6 @@ router.get('/', ensureLoggedIn, function (req, res, next) {
             userProfile: JSON.stringify(req.user, null, '  ')
         });
     }
-    
 });
 
 module.exports = router;
