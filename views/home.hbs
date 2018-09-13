@@ -27,11 +27,19 @@
 <br>
 <!-- Start Feature -->
 <div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Drop & Drag Your Preferences</h2>
+      </div>
+    </div>
+  </div>
+<br>
+<div class="container">
   <div class="row ui-state-default" id="sortable">
       <div class="col-sm-4 col-md-2 ui-state-default"> 
         <div class="d-block ftco-img-flaticon">
-          <img src="images/svg/safety.svg" class="img-fluid mb-4">
-          <p>Safety</p>
+          <img src="images/svg/library.svg" class="img-fluid mb-4">
+          <p>Attractions</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
@@ -43,7 +51,7 @@
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/nightlife.svg" class="img-fluid mb-4">
-          <p>Restaurants &amp; Nightlife</p>
+          <p>Nightlife &amp; Restaurants</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
@@ -66,16 +74,23 @@
       </div> 
   </div>
 </div>
+<br>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center">
-      <p> Sort your preferences with <b class="bold">least preferred on the left</b> and <b class="bold">most preferred on the right.</b></p>
+    <div class="col-md-4 text-left">
+      <h4>Most Important</h4>
     </div>
-
+    <div class="col-md-4 text-center">
+      <button id="user-button">Find Your Locality</button>
+     </div>
+    <div class="col-md-4 text-right">
+      <h4>Least Important</h4>
+    </div>
   </div>
 </div>
-<!-- End Drag Feature -->
+<br>
 <hr>
+<!-- End Drag Feature -->
 <!-- Start Map -->
 <div id="map"></div>
 <!-- End MAP -->
