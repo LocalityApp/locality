@@ -410,6 +410,21 @@ html, body {
   }
 }
 
+#user-button{
+  color: white;
+  background: black;
+  font-family: "Abril Fatface", times, serif;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  height: 125%;
+}
+
+#user-button:hover{
+  color: black;
+  background: white;
+  border: white;
+}
 .site-hero-inner .sub-heading {
   font-size: 30px;
   font-weight: 200;
@@ -426,7 +441,7 @@ html, body {
 
 .ui-state-default {
 cursor: pointer;
-cursor: hand;
+
 }
 
 /* MAP */
@@ -445,4 +460,6 @@ html, body {
   color: rgb(21, 43, 79);
 }
 
+
 #sortable > div { float: left; }
+

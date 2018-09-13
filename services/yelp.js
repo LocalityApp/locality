@@ -6,8 +6,8 @@ require('dotenv').config();
 
 //
 var geoJSON = {
-  "type": "FeatureCollection", 
-  "features": []
+  'type': 'FeatureCollection', 
+  'features': []
 };
 
 //
@@ -25,14 +25,14 @@ const API_ENDPOINT = 'https://api.yelp.com/v3/businesses/search?limit=50&radius=
 module.exports = go = async (context, cb) => {
   geoJSON.features = await getPoints(context);
   cb(geoJSON);
-}
+};
 
 const getPoints = async (context) => {
   let records = [];
   let keepGoing = true;
   let offset = 0;
   while (keepGoing) {
-    let response = await reqPoints(context, offset)
+    let response = await reqPoints(context, offset);
     await records.push.apply(records, response);
     offset += 50;
     if (offset >= 100) {
@@ -40,7 +40,7 @@ const getPoints = async (context) => {
       return records;
     }
   }
-}
+};
 
 const reqPoints = async(context, offset) => {
   const pointReq = {
