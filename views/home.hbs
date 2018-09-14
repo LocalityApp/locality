@@ -29,7 +29,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h2>Drop & Drag Your Preferences</h2>
+      <h2>Drop &amp; Drag Your Preferences</h2>
       </div>
     </div>
   </div>
@@ -39,37 +39,37 @@
       <div class="col-sm-4 col-md-2 ui-state-default"> 
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/library.svg" class="img-fluid mb-4">
-          <p>Attractions</p>
+          <p class="search-category" data-cat="attractions">Attractions</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/school.svg" class="img-fluid mb-4">
-          <p>Schools</p>
+          <p class="search-category" data-cat="schools">Schools</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/nightlife.svg" class="img-fluid mb-4">
-          <p>Nightlife &amp; Restaurants</p>
+          <p class="search-category" data-cat="nightlife">Nightlife &amp; Restaurants</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/services.svg" class="img-fluid mb-4">
-          <p>Services</p>
+          <p class="search-category" data-cat="services">Services</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/transport.svg" class="img-fluid mb-4">
-          <p>Walkability &amp; Public Transportation</p>
+          <p class="search-category" data-cat="transit">Walkability &amp; Public Transportation</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/bike.svg" class="img-fluid mb-4 ">
-          <p>Parks</p>
+          <p class="search-category" data-cat="parks">Parks</p>
         </div>
       </div> 
   </div>
@@ -149,16 +149,63 @@
 {{/if}}
 
 
-<!-- Importing dragable feature for icons -->
-<script src="style.js"></script>
 <!-- Google Maps -->
-<script src="google-maps-service.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLQbqN7AkkB4iG82HbHcFhFWxubl2U44&libraries=places"></script>
+<script src="javascripts/google_maps.js"></script>
 <script>
     google.maps.event.addDomListener(window, "load", initialize)
 </script>
 <!-- Event Handler to Change User Settings -->
 <script>
+// Document ready fn
+$( document ).ready(function(){
+  // Attractions
+  $.getJSON('http://localhost:3000/data/attractions.json', function(data) {         
+    console.table(data.dataPoints);
+    attractions = data;
+  });
+  // Education
+  $.getJSON('http://localhost:3000/data/education.json', function(data) {         
+    console.table(data.dataPoints);
+    education = data;
+  });
+  // Nightlife
+  $.getJSON('http://localhost:3000/data/nightlife.json', function(data) {         
+    console.table(data.dataPoints);
+    nightspots = data;
+    // userLocality();
+  });
+  // Parks
+  $.getJSON('http://localhost:3000/data/parks.json', function(data) {         
+    console.table(data.dataPoints);
+    parks = data;
+  });
+  // Services
+  $.getJSON('http://localhost:3000/data/services.json', function(data) {         
+    console.table(data.dataPoints);
+    services = data;
+    // userLocality();
+  });
+  // Transit
+  $.getJSON('http://localhost:3000/data/transit.json', function(data) {         
+    console.table(data.dataPoints);
+    transit = data;
+  });
+  $("#sortable").sortable({
+      revert: true
+    }); 
+  
+});
+
+$('#user-button').on('click', function(){
+  let searchOrder = $('.search-category');
+  let categories = []
+  for(let i = 0;i < searchOrder.length; i++){
+    categories.push(searchOrder[i].dataset.cat);
+  }
+  console.log(searchOrder);
+  console.log(categories);
+});
     // Event handler for submit button.
   $("#updateUserSettings").on("submit", function (event) {
     event.preventDefault();
