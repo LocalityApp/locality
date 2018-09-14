@@ -1,6 +1,14 @@
 var map;  
 var nightspots;
 var markers = [];
+var locations = {
+    'attractions': null,
+    'education': null,
+    'nightlife': null,
+    'parks': null,
+    'services': null, 
+    'transit': null
+};
 var userLocation = {
     lat:"",
     lng:""

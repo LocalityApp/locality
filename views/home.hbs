@@ -162,34 +162,34 @@ $( document ).ready(function(){
   // Attractions
   $.getJSON('http://localhost:3000/data/attractions.json', function(data) {         
     console.table(data.dataPoints);
-    attractions = data;
+    locations.attractions = data;
   });
   // Education
   $.getJSON('http://localhost:3000/data/education.json', function(data) {         
     console.table(data.dataPoints);
-    education = data;
+    locations.education = data;
   });
   // Nightlife
   $.getJSON('http://localhost:3000/data/nightlife.json', function(data) {         
     console.table(data.dataPoints);
-    nightspots = data;
+    locations.nightlife = data;
     // userLocality();
   });
   // Parks
   $.getJSON('http://localhost:3000/data/parks.json', function(data) {         
     console.table(data.dataPoints);
-    parks = data;
+    locations.parks = data;
   });
   // Services
   $.getJSON('http://localhost:3000/data/services.json', function(data) {         
     console.table(data.dataPoints);
-    services = data;
+    locations.services = data;
     // userLocality();
   });
   // Transit
   $.getJSON('http://localhost:3000/data/transit.json', function(data) {         
     console.table(data.dataPoints);
-    transit = data;
+    locations.transit = data;
   });
   $("#sortable").sortable({
       revert: true
@@ -205,6 +205,7 @@ $('#user-button').on('click', function(){
   }
   console.log(searchOrder);
   console.log(categories);
+  console.table(locations);
 });
     // Event handler for submit button.
   $("#updateUserSettings").on("submit", function (event) {
