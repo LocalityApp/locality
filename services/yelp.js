@@ -14,17 +14,17 @@ var geoJSON = {
 const API_ENDPOINT = 'https://api.yelp.com/v3/businesses/search?limit=50&radius=22000&latitude=39.7392&longitude=-104.9903';
 
 //
-module.exports = go = (context, cb) => {
-  geoJSON.features = getPoints(context);
+module.exports = go = async (context, cb) => {
+  geoJSON.features = await getPoints(context.categories);
   cb(geoJSON);
 };
 
-const getPoints = async (context) => {
+const getPoints = async (categories) => {
   let records = [];
   let keepGoing = true;
   let offset = 0;
   while (keepGoing) {
-    let response = await reqPoints(context, offset);
+    let response = await reqPoints(categories, offset);
     await records.push.apply(records, response);
     offset += 50;
     if (offset >= 100) {
@@ -34,9 +34,9 @@ const getPoints = async (context) => {
   }
 };
 
-const reqPoints = async(context, offset) => {
+const reqPoints = async(categories, offset) => {
   const pointReq = {
-    url: `${API_ENDPOINT}&categories=${context}&offset=${offset}`, 
+    url: `${API_ENDPOINT}&offset=${offset}&categories=${categories}`, 
     json: true, 
     headers: {
       'User-Agent': 'request',

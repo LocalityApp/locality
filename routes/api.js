@@ -6,7 +6,6 @@ const db = require('../models/dbConnection');
 const router = express.Router();
 
 //
-const superSearch = require('../controllers/superSearch.js');
 const cluster = require('../services/cluster');
 
 router.get('/memberSearch', ensureLoggedIn, (req, res, status) => {
@@ -57,7 +56,7 @@ router.post('/userSettings', (req, res, status) => {
 router.post('/scores', (req, res, status) => {
   userCriteria = req.body;
   for (var criterium in userCriteria) {
-    cluster(criterium);
+    cluster(userCriteria[criterium]);
   }
   res.send('Endpoint hit.');
 });
