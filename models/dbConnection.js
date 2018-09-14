@@ -48,13 +48,15 @@ const updateUserData = (UID, userData) => {
 	// Should update some stuff
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
 		const collection = client.db('master').collection('users');
-		collection.updateOne(
-			{'UID': UID},
-			{'userData': userData}).toArray(function (err, result) {
-			if (err) throw err;
-			console.log(result);
-		});
-		client.close();
+		try{
+			collection.updateOne(
+				{'UID': UID},
+				{ $set: {'customSettings': userData}});
+			client.close();
+		}
+		catch(e){
+			throw e.message;
+		}
 	});
 };
 
@@ -77,7 +79,7 @@ const deleteUser = (UID) => {
 // createUser('smankele@hotmail.com');
 // readUserData('smankele@hotmail.com');
 // readUserData('smanele@hotmail.com');
-// updateUser('smankele@hotmail.com');
+// updateUser('smankele@hotmail.com', {});
 // deleteUser('smankele@hotmail.com');
 
 module.exports = {
