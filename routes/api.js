@@ -33,6 +33,10 @@ router.get('/search', (req, res, status) => {
   });
 });
 
+router.post('/ftw', (req, res, status) => {
+  res.json(req.body);
+});
+
 
 router.post('/userSettings', (req, res, status) => {
   // You may have noticed that we included two new require files, one of them being request. Request allows us to easily make HTTP requests. In our instance here, we are using the Huffington Post's API to pull the latest election results, and then we're sending that data to our polls view.

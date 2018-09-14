@@ -206,6 +206,13 @@ $('#user-button').on('click', function(){
   console.log(searchOrder);
   console.log(categories);
   console.table(locations);
+  $.ajax({
+  type: "POST",
+  url: "api/ftw",
+  data: locations,
+  success: function(res){console.log(res)},
+  dataType: jsonp
+  }); 
 });
     // Event handler for submit button.
   $("#updateUserSettings").on("submit", function (event) {
