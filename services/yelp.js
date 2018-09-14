@@ -1,7 +1,7 @@
 
 //
 const request = require('request-promise');
-const createFeatureObj = require('./createFeatureObj');
+const createFeatureObj = require('./create-feature-obj');
 require('dotenv').config();
 
 //

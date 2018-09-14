@@ -12,7 +12,6 @@ module.exports = go = (ptFeatures) => {
     weightContexts(neighborhoods);
 };
 
-
 //
 function orderCentroids(ptObj) {
     var array = [];
