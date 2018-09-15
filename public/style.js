@@ -1,10 +1,7 @@
 $(document).ready(function(){
-
-
-
   $("#sortable").sortable({
-      revert: true
-    }); 
+    evert: true
+  }); 
   
   $('.ui-state-default').on('click', function(){
     let list = $('.ui-state-default');
@@ -12,6 +9,4 @@ $(document).ready(function(){
         console.log(element);
     });       
   });
-
-
 });
