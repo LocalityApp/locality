@@ -62,9 +62,7 @@ router.post('/userSettings', (req, res, status) => {
 
 router.post('/scores', (req, res, status) => {
   userCriteria = req.body;
-  for (var criterium in userCriteria) {
-    cluster(criterium);
-  }
+  cluster(userCriteria);
   res.send('Endpoint hit.');
 });
 
