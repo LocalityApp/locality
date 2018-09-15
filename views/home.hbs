@@ -45,7 +45,7 @@
       <div class="col-sm-4 col-md-2 ui-state-default">
         <div class="d-block ftco-img-flaticon">
           <img src="images/svg/school.svg" class="img-fluid mb-4">
-          <p class="search-category" data-cat="schools">Schools</p>
+          <p class="search-category" data-cat="education">Schools</p>
         </div>
       </div>
       <div class="col-sm-4 col-md-2 ui-state-default">
@@ -116,17 +116,9 @@
             <div class="modal-body">
                 <p>Edit Your Locality Settings</p>
                 <form id="editUserSettings">
-                    <input type="text" class="form-control modalForm" id="userNickname" value="{{#if user.customSettings}}
-                                                                                                  {{user.customSettings.nickname}}
-                                                                                                {{else}}
-                                                                                                  {{user.userData.nickname}}!</b>
-                                                                                                {{/if}}" placeholder="Edit Your Name">
-                    <input type="text" class="form-control modalForm" id="homeAddress" value="{{#if user.customSettings}}
-                                                                                                {{user.customSettings.homeAddress}}
-                                                                                              {{/if}}" placeholder="Add Your Home Address">
-                    <input type="text" class="form-control modalForm" id="workAddress" value="{{#if user.customSettings}}
-                                                                                                {{user.customSettings.workAddress}}
-                                                                                              {{/if}}" placeholder="Add Your Work Address">
+                    <input type="text" class="form-control modalForm" id="userNickname" value="{{#if user.customSettings}}{{user.customSettings.nickname}}{{else}}{{user.userData.nickname}}{{/if}}" placeholder="Edit Your Name">                                                                
+                    <input type="text" class="form-control modalForm" id="homeAddress" value="{{#if user.customSettings}}{{user.customSettings.homeAddress}}{{/if}}" placeholder="Add Your Home Address">
+                    <input type="text" class="form-control modalForm" id="workAddress" value="{{#if user.customSettings}}{{user.customSettings.workAddress}}{{/if}}" placeholder="Add Your Work Address">
                 </form>
             </div>
             <div class="modal-footer">
@@ -172,34 +164,34 @@
 // Document ready fn
 $( document ).ready(function(){
   // Attractions
-  $.getJSON('http://localhost:3000/data/attractions.json', function(data) {         
+  $.getJSON('data/attractions.json', function(data) {         
     console.table(data.dataPoints);
     locations.attractions = data;
   });
   // Education
-  $.getJSON('http://localhost:3000/data/education.json', function(data) {         
+  $.getJSON('data/education.json', function(data) {         
     console.table(data.dataPoints);
     locations.education = data;
   });
   // Nightlife
-  $.getJSON('http://localhost:3000/data/nightlife.json', function(data) {         
+  $.getJSON('data/nightlife.json', function(data) {         
     console.table(data.dataPoints);
     locations.nightlife = data;
     // userLocality();
   });
   // Parks
-  $.getJSON('http://localhost:3000/data/parks.json', function(data) {         
+  $.getJSON('data/parks.json', function(data) {         
     console.table(data.dataPoints);
     locations.parks = data;
   });
   // Services
-  $.getJSON('http://localhost:3000/data/services.json', function(data) {         
+  $.getJSON('data/services.json', function(data) {         
     console.table(data.dataPoints);
     locations.services = data;
     // userLocality();
   });
   // Transit
-  $.getJSON('http://localhost:3000/data/transit.json', function(data) {         
+  $.getJSON('data/transit.json', function(data) {         
     console.table(data.dataPoints);
     locations.transit = data;
   });
@@ -219,8 +211,10 @@ $('#user-button').on('click', function(){
   console.log(searchOrder);
   console.log(categories);
   console.table(locations);
-  $.post("http://localhost:3000/api/ftw", {"smallObj": "ssjsk"}).done( function (data){
+  drop(categories[0], categories[1], categories[2], categories[3]);
+  $.post("api/scores", {"categories": categories}).done( function (data){
     console.log(data);
+
   });
 });
     // Event handler for submit button.
@@ -236,7 +230,7 @@ $('#user-button').on('click', function(){
     // Send the POST Request
     $.ajax({
       type: "POST",
-      url: "http://localhost:3000/api/userSettings",
+      url: "api/userSettings",
       data: user,
       success: function(res){console.log(res)},
       dataType: JSON
