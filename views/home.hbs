@@ -118,8 +118,6 @@
                 <form id="editUserSettings">
                     <input type="text" class="form-control modalForm" id="userNickname" value="{{#if user.customSettings}}
                                                                                                   {{user.customSettings.nickname}}
-                                                                                                {{else}}
-                                                                                                  {{user.userData.nickname}}!</b>
                                                                                                 {{/if}}" placeholder="Edit Your Name">
                     <input type="text" class="form-control modalForm" id="homeAddress" value="{{#if user.customSettings}}
                                                                                                 {{user.customSettings.homeAddress}}
@@ -139,35 +137,12 @@
 {{/if}}
 <!-- END MODAL FOR DISPLAYING USER INFORMATION -->
 
-<!-- MODAL FOR NOTIFYING USER OF UPDATED USER SETTINGS -->
-{{#if user}}
-<div id="userSettings" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" style="text-align: left;">
-                    <b>Hi {{user.userData.nickname}}!</b>
-                </h2>
-            </div>
-            <div class="modal-body">
-                <p>Success! Your settings have been saved.</p>
-            </div>
-            <div class="modal-footer">
-                <span><button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button></span>
-            </div>
-        </div>
-    </div>
-</div>
-{{/if}}
-
-
 <!-- Google Maps -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkLQbqN7AkkB4iG82HbHcFhFWxubl2U44&libraries=places"></script>
 <script src="javascripts/google_maps.js"></script>
 <script>
     google.maps.event.addDomListener(window, "load", initialize)
 </script>
-<!-- Event Handler to Change User Settings -->
 <script>
 // Document ready fn
 $( document ).ready(function(){
@@ -247,6 +222,11 @@ $('#user-button').on('click', function(){
       }
     );
   });
+
+  $("#updateUserSettings").on("click", function (event) {
+    event.preventDefault();
+    alert("Settings Saved!");
+  })
 </script>
 </body>
 </html>

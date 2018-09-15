@@ -1,4 +1,9 @@
 window.addEventListener('load', function() {
+	navigator.geolocation.getCurrentPosition(function(position){  
+		alert('Lat: ' + position.coords.latitude + ' ' +  
+			  'Lon: ' + position.coords.longitude);  
+	});
+	
 	var content = document.querySelector('.content');
 	var loadingSpinner = document.getElementById('loading');
 	content.style.display = 'block';
