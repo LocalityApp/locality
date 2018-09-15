@@ -14,8 +14,7 @@ router.get('/', ensureLoggedIn, function (req, res, next) {
     }
     else{
         res.render('home', {
-            user: req.user,
-            userProfile: JSON.stringify(req.user, null, '  ')
+            user: req.user
         });
     }
 });

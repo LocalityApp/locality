@@ -163,4 +163,4 @@
 {"type":"Feature","geometry":{"type":"Point","coordinates":[-105.04053,39.63418]},"properties":{"name":"Kaiser Elementary School"}}, 
 {"type":"Feature","geometry":{"type":"Point","coordinates":[-105.03959,39.85112]},"properties":{"name":"Westminster Learning Center"}}, 
 {"type":"Feature","geometry":{"type":"Point","coordinates":[-105.0392,39.851238]},"properties":{"name":"Thomas Learning Centers"}}, 
-{"type":"Feature","geometry":{"type":"Point","coordinates":[-105.0336,39.86123]},"properties":{"name":"Mesa Elementary School"}}]} 
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-105.0336,39.86123]},"properties":{"name":"Mesa Elementary School"}}]}

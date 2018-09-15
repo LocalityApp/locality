@@ -219,34 +219,30 @@ $('#user-button').on('click', function(){
   console.log(searchOrder);
   console.log(categories);
   console.table(locations);
-  $.ajax({
-  type: "POST",
-  url: "api/ftw",
-  data: locations,
-  success: function(res){console.log(res)},
-  dataType: jsonp
-  }); 
+  $.post("http://localhost:3000/api/ftw", {"smallObj": "ssjsk"}).done( function (data){
+    console.log(data);
+  });
 });
     // Event handler for submit button.
-  $("#updateUserSettings").on("submit", function (event) {
+  {{#if user}}  
+  $("#updateUserSettings").on("click", function (event) {
     event.preventDefault();
     let user = {
+      UID: {{user.UID}}
       nickname: $("#userNickname").val().trim(),
       workAddress: $("#workAddress").val().trim(),
       homeAddress: $("#homeAddress").val().trim()
     };
     // Send the POST Request
-    $.ajax("/api/userSettings", {
+    $.ajax({
       type: "POST",
-      data: user
-    }).then(
-      function () {
-        console.log("Updated a User:", user);
-        //Reload the page to get the updated list.
-        location.reload();
-      }
-    );
+      url: "http://localhost:3000/api/userSettings",
+      data: user,
+      success: function(res){console.log(res)},
+      dataType: JSON
+    });
   });
+  {{/if}}
 </script>
 </body>
 </html>

@@ -1,13 +1,14 @@
 
-//
+
 const yelp = require('./yelp.js');
 const kmeans = require('./kmeans.js');
-const nightlife = 'barcrawl|restaurants|bars|beergardens|coffeeshops|comedyclubs|danceclubs|karaoke|pianobars|poolhalls|musicvenues|beer_and_wine|breweries|coffee|cannabisdispensaries';
-//
+const nightlife = 'barcrawl,restaurants,bars,beergardens,coffeeshops,comedyclubs,danceclubs,karaoke,pianobars,poolhalls,musicvenues,beer_and_wine,breweries,coffee,cannabisdispensaries';
+const services = 'autorepair,servicestations,bikeshop,banks,insurance,health,homeservices,vet,accountants,postoffices';
+const parks = 'parks,lakes,baseballfields,basketballcourts,dog_parks,skate_parks,playgrounds,publicplazas,swimmingpools,tennis';
 var yelpService = {
     'contexts': [
         {
-            'context': nightlife,
+            'context': parks,
             'categories': 'arts|food|nightlife|restaurants',
             geoJSON: {
 

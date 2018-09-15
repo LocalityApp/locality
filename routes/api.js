@@ -3,9 +3,8 @@ const request = require('request');
 const passport = require('passport');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const db = require('../models/dbConnection');
+const geo = require('../controllers/locations');
 const router = express.Router();
-
-//
 const superSearch = require('../controllers/superSearch.js');
 const cluster = require('../services/cluster');
 
@@ -38,7 +37,9 @@ router.get('/search', (req, res, status) => {
 });
 
 router.post('/ftw', (req, res, status) => {
-  res.json(req.body);
+  
+  console.log(geo.nightlife);
+  res.json(geo.nightlife);
 });
 
 
