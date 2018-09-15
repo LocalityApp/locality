@@ -106,15 +106,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" style="text-align: left;">
+                  {{#if user.customSettings}}
+                    <b>Hi {{user.customSettings.nickname}}!</b>
+                  {{else}}
                     <b>Hi {{user.userData.nickname}}!</b>
+                  {{/if}}  
                 </h2>
             </div>
             <div class="modal-body">
                 <p>Edit Your Locality Settings</p>
                 <form id="editUserSettings">
-                    <input type="text" class="form-control modalForm" id="userNickname" value="{{userData.nickname}}" placeholder="Edit Your Name">
-                    <input type="text" class="form-control modalForm" id="homeAddress" value="{{userData.homeAddress}}" placeholder="Add Your Home Address">
-                    <input type="text" class="form-control modalForm" id="workAddress" value="{{userData.workAddress}}" placeholder="Add Your Work Address">
+                    <input type="text" class="form-control modalForm" id="userNickname" value="{{#if user.customSettings}}
+                                                                                                  {{user.customSettings.nickname}}
+                                                                                                {{else}}
+                                                                                                  {{user.userData.nickname}}!</b>
+                                                                                                {{/if}}" placeholder="Edit Your Name">
+                    <input type="text" class="form-control modalForm" id="homeAddress" value="{{#if user.customSettings}}
+                                                                                                {{user.customSettings.homeAddress}}
+                                                                                              {{/if}}" placeholder="Add Your Home Address">
+                    <input type="text" class="form-control modalForm" id="workAddress" value="{{#if user.customSettings}}
+                                                                                                {{user.customSettings.workAddress}}
+                                                                                              {{/if}}" placeholder="Add Your Work Address">
                 </form>
             </div>
             <div class="modal-footer">
@@ -203,6 +215,7 @@ $('#user-button').on('click', function(){
   for(let i = 0;i < searchOrder.length; i++){
     categories.push(searchOrder[i].dataset.cat);
   }
+  locations.scoring = categories;
   console.log(searchOrder);
   console.log(categories);
   console.table(locations);
@@ -225,10 +238,10 @@ $('#user-button').on('click', function(){
     // Send the POST Request
     $.ajax("/api/userSettings", {
       type: "POST",
-      data: newUser
+      data: user
     }).then(
       function () {
-        console.log("Created new User", newUser);
+        console.log("Updated a User:", user);
         //Reload the page to get the updated list.
         location.reload();
       }

@@ -7,7 +7,8 @@ var locations = {
     'nightlife': null,
     'parks': null,
     'services': null, 
-    'transit': null
+    'transit': null,
+    'scoring': []
 };
 var userLocation = {
     lat:"",
