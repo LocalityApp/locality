@@ -28,7 +28,7 @@ module.exports = go = async (context, cb) => {
 };
 
 const getPoints = async (context) => {
-  let fileName = './public/data/nightlife.json';
+  let fileName = './public/data/transit.json';
   let records = [];
   let keepGoing = true;
   let offset = 0;
@@ -37,7 +37,7 @@ const getPoints = async (context) => {
     let response = await reqPoints(context, offset);
     await records.push.apply(records, response);
     offset += 50;
-    if (offset >= 100) {
+    if (offset >= 1000) {
       keepGoing = false;
       records.forEach(element =>{
         fileWrite(fileName, JSON.stringify(element)+ ', \n');
@@ -50,7 +50,7 @@ const getPoints = async (context) => {
 
 const reqPoints = async(context, offset) => {
   const pointReq = {
-    url: `${API_ENDPOINT}&categories=${context}&offset=${offset}`, 
+    url: `${API_ENDPOINT}&categories=trainstations,busstations,airports,bikesharing,metrostations,publictransport,trains&offset=${offset}`, 
     json: true, 
     headers: {
       'User-Agent': 'request',
