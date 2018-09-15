@@ -2,27 +2,19 @@
 //
 const yelp = require('./yelp.js');
 const kmeans = require('./kmeans.js');
+const request = require('request-promise');
 
-//
-var yelpService = {
-    'contexts': [
-        {
-            'context': 'amenities',
-            'categories': 'arts|food|nightlife|restaurants',
-            geoJSON: {
-
-            },
-            centroids: {}
-        }, 
-        // {'services': 'automotive|bicycles|financialservices|health|homeservices|professional|shopping'}, 
-        // {'education': 'education'}, 
-        // {'transit': 'trainstations|busstations|airports'}, 
-        // {'safety': 'firedepartments|policedepartments'}
-    ]
-   }
+var contexts = {
+    nightlife: 'barcrawl|restaurants|bars|beergardens|coffeeshops|comedyclubs|danceclubs|karaoke|pianobars|poolhalls|musicvenues|beer_and_wine|breweries|coffee|cannabisdispensaries', 
+    // services: 'autorepair|servicestations|bikeshop|banks|insurance|health|homeservices|vet|accountants|postoffices', 
+    // attractions: 'waterparks|zoos|amateursportsteams|amusementparks|aquariums|beaches|arcades|galleries|movietheaters|museums|theater|libraries', 
+    // education: 'collegeuniv|elementaryschools|highschools|preschools|privateschools', 
+    // transit: 'trainstations|busstations|airports|bikesharing|metrostations|publictransport|trains', 
+    // parks: 'parks|lakes|baseballfields|basketballcourts|dog_parks|skate_parks|playgrounds|publicplazas|swimmingpools|tennis'
+}
    
 // return cluster points as property of context centroids
-yelpService.contexts.forEach(function(context) {
-    context.centroids = yelp(context, kmeans)
-});
+module.exports = async function(context) {
+    await yelp(contexts[context], kmeans);
+};
 

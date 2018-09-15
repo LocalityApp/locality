@@ -11,18 +11,11 @@ var geoJSON = {
 };
 
 //
-// const amenities = 'arts|food|nightlife|restaurants';
-// const services = 'automotive|bicycles|financialservices|health|homeservices|professional|shopping';
-// const education = 'education';
-// const transit = 'trainstations|busstations|airports';
-// const safety = 'firedepartments|policedepartments';
-
-//
 const API_ENDPOINT = 'https://api.yelp.com/v3/businesses/search?limit=50&radius=22000&latitude=39.7392&longitude=-104.9903';
 
 //
-module.exports = go = async (context, cb) => {
-  geoJSON.features = await getPoints(context);
+module.exports = go = (context, cb) => {
+  geoJSON.features = getPoints(context);
   cb(geoJSON);
 };
 

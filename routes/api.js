@@ -5,7 +5,8 @@ const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
 const db = require('../models/dbConnection');
 const geo = require('../controllers/locations');
 const router = express.Router();
-
+const superSearch = require('../controllers/superSearch.js');
+const cluster = require('../services/cluster');
 
 router.get('/memberSearch', ensureLoggedIn, (req, res, status) => {
   // You may have noticed that we included two new require files, one of them being request. Request allows us to easily make HTTP requests. In our instance here, we are using the Huffington Post's API to pull the latest election results, and then we're sending that data to our polls view.
@@ -59,6 +60,12 @@ router.post('/userSettings', (req, res, status) => {
   }
 });
 
-
+router.post('/scores', (req, res, status) => {
+  userCriteria = req.body;
+  for (var criterium in userCriteria) {
+    cluster(criterium);
+  }
+  res.send('Endpoint hit.');
+});
 
 module.exports = router;
