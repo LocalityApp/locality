@@ -11,8 +11,8 @@ var locations = {
     'scoring': []
 };
 var userLocation = {
-    lat:"",
-    lng:""
+    lat:'',
+    lng:''
 };
 
 var userImg = {
