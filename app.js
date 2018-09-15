@@ -59,9 +59,9 @@ app.engine('handlebars', exphbs(
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+
 app.use(cookieParser());
 // This allows us to save sessions - users/web tokens, etc.
 app.use(
@@ -131,5 +131,6 @@ app.use(function (err, req, res) {
 		error: {}
 	});
 });
+
 
 module.exports = app;
