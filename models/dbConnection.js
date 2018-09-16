@@ -6,6 +6,7 @@ const pwd = process.env.MONGO_PWD;
 
 const uri = `mongodb+srv://${userName}:${pwd}@cluster0-lmodr.mongodb.net/admin`;
 
+
 const createUser = (UID, userData={}, cb) =>{
 	// Should create some stuff
 	MongoClient.connect(uri,{ useNewUrlParser: true }, function(err, client) {
@@ -75,12 +76,6 @@ const deleteUser = (UID) => {
 	});
 };
 
-
-// createUser('smankele@hotmail.com');
-// readUserData('smankele@hotmail.com');
-// readUserData('smanele@hotmail.com');
-// updateUser('smankele@hotmail.com', {});
-// deleteUser('smankele@hotmail.com');
 
 module.exports = {
 	'createUser': createUser,
