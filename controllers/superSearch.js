@@ -6,7 +6,7 @@ const neighborhoods = JSON.parse(content);
 const turf = require('@turf/turf');
 var scoring_array = [];
 module.exports = function findNeighborhood(coordPair){
-    let indexOfFound = 0
+    let indexOfFound = 0;
 
     let found = false;
     while (!found)
@@ -52,9 +52,6 @@ function fillArr(){
     console.log('***' + mode(scoring_array));
     
 }
-
-var neighborhood = fillArr();
-console.log(neighborhood);
 
 
 // Attractions

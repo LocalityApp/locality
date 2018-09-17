@@ -14,6 +14,7 @@ console.log(neighborhoods.features[300]);
 //      Name: 'Central Business District',
 //      RegionID: '268632' } }
 
+// attractions
 // neighborhoods.features[252];
 // { type: 'Feature',
 //   geometry: { type: 'Polygon', coordinates: [ [Array] ] },
