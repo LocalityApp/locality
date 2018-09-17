@@ -12,7 +12,6 @@ module.exports = function findNeighborhood(coordPair){
     while (!found)
     {
         found = turf.booleanPointInPolygon(coordPair, neighborhoods.features[indexOfFound]);
-        // found = d3.geoContains(neighborhoods.features[indexOfFound], coordPair);
         indexOfFound++;
     }
     console.log(neighborhoods.features[indexOfFound]);
