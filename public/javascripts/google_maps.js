@@ -132,6 +132,7 @@ const userMarker = userLocality =>{
 
 function drop(context1, context2, context3, context4) {
     clearMarkers();
+    // Add a title to each of these methods
     for (var i = 0; i < locations[context1].dataPoints.length; i++) {
       let spot = locations[context1].dataPoints[i].geometry.coordinates;
       addMarkerWithTimeout({lat:spot[1], lng:spot[0]}, (i * 80), context1);
@@ -153,7 +154,7 @@ function drop(context1, context2, context3, context4) {
     }
 }
 
-function addMarkerWithTimeout(position, timeout, context) {
+function addMarkerWithTimeout(position, timeout, context, title='') {
     window.setTimeout(function() {
         markers.push(new google.maps.Marker({
             position: position,
