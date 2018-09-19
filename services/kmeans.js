@@ -7,17 +7,17 @@ var scoreNeighborhoods = require('./score-neighborhoods.js');
 module.exports = go = (geoJSON) => {
     let centroids = kMeansClustering(geoJSON);
     return scoreNeighborhoods(centroids);
-}
+};
 //
 function kMeansClustering(ptsJSON) {
   var options = {numberOfClusters: 5};
   var clustered = turf.clustersKmeans(ptsJSON, options);
   return getCentroids(clustered);
-};
+}
 
 //
 function getCentroids(cluster) {
-    var centroids = {}
+    var centroids = {};
     cluster.features.forEach(function(element) {
         var centroidNumber = element.properties.cluster;
         if (!centroids[centroidNumber]) {
@@ -26,12 +26,12 @@ function getCentroids(cluster) {
                 count: 0
             };
         } else {
-            var count = centroids[centroidNumber].count
+            var count = centroids[centroidNumber].count;
             centroids[centroidNumber].count = count+1;
         }
-    })
+    });
     return centroids;
-};
+}
 
 // //
 // var turf = require('@turf/turf');
