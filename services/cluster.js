@@ -27,4 +27,4 @@ modules.exports = function(userPreferencesObj) {
         var neighborhoodScores = kmeans(userPreferencesObj(contexdt));
         console.log(neighborhoodScores);
     }
-}
+};
