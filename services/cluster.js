@@ -22,7 +22,7 @@ const request = require('request-promise');
 // var neighborhoods = {};
 
 //
-modules.exports = function(userPreferencesObj) {
+module.exports = function(userPreferencesObj) {
     for (var context in userPreferencesObj) {
         var neighborhoodScores = kmeans(userPreferencesObj(contexdt));
         console.log(neighborhoodScores);
