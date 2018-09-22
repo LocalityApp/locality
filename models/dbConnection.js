@@ -75,13 +75,6 @@ const deleteUser = (UID) => {
 	});
 };
 
-
-// createUser('smankele@hotmail.com');
-// readUserData('smankele@hotmail.com');
-// readUserData('smanele@hotmail.com');
-// updateUser('smankele@hotmail.com', {});
-// deleteUser('smankele@hotmail.com');
-
 module.exports = {
 	'createUser': createUser,
 	'readUserData': readUserData,

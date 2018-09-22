@@ -67,9 +67,9 @@ const reqPoints = async(context, offset) => {
 function fileWrite(fileName, text){
   fs.appendFileSync(fileName, text, 'utf8', function (err) {
     if (err) {
-        console.log("An error occured while writing JSON Object to File.");
+        console.log('An error occured while writing JSON Object to File.');
         return console.log(err);
     }
-    console.log("Record has been written");
+    console.log('Record has been written');
   });
 }

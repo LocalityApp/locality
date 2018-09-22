@@ -1,12 +1,12 @@
 const d3 = require('d3-geo');
-const fs = require("fs");
-const geo = require("./locations");
-const content  = fs.readFileSync(__dirname + "/ZillowNeighborhoodsCO.json");
+const fs = require('fs');
+const geo = require('./locations');
+const content  = fs.readFileSync(__dirname + '/ZillowNeighborhoodsCO.json');
 const neighborhoods = JSON.parse(content);
 const turf = require('@turf/turf');
 var scoring_array = [];
 module.exports = function findNeighborhood(coordPair){
-    let indexOfFound = 0
+    let indexOfFound = 0;
 
     let found = false;
     while (!found)
@@ -18,7 +18,7 @@ module.exports = function findNeighborhood(coordPair){
     scoring_array.push(indexOfFound);
     console.log(scoring_array);
     return indexOfFound;
-}
+};
 
 
 
@@ -45,15 +45,12 @@ function mode(array){
 function fillArr(){
     for(let i=0; i < geo.transit.dataPoints.length; i++){
         findNeighborhood(geo.transit.dataPoints[i].geometry.coordinates);
-        console.log("#" + i);
+        console.log('#' + i);
         mode(scoring_array);
     }
     console.log('***' + mode(scoring_array));
     
 }
-
-var neighborhood = fillArr();
-console.log(neighborhood);
 
 
 // Attractions

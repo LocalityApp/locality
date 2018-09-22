@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 
 
-  $("#sortable").sortable({
+  $('#sortable').sortable({
       revert: true
     }); 
   
