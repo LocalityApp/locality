@@ -61,9 +61,14 @@ router.post('/userSettings', (req, res, status) => {
 });
 
 router.post('/scores', (req, res, status) => {
-  userCriteria = req.body;
-  cluster(userCriteria);
-  res.send('Endpoint hit.');
+  try {
+    userCriteria = req.body;
+    cluster(userCriteria);
+    res.json({'score': 'We are calculating a score...'});
+  } catch (error) {
+    res.json({'message': 'Sorry we had a problem with calculating your score.  We have logged this request and will forward it to our QA team'});
+  }
+  
 });
 
 module.exports = router;
