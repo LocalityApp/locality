@@ -1,6 +1,7 @@
 # locality
 
-### Status: <img src="https://travis-ci.com/LocalityApp/locality.svg?branch=master"/>
+### Status
+<img src="https://travis-ci.com/LocalityApp/locality.svg?branch=master"/>
 
 A neighborhood based web application for suiting perpective residents with their ideal locality.  This project was conceived for part of the University of Denver Coding Bootcamp - May thru Nov 2018 Cohort.  
 
