@@ -13,7 +13,7 @@
     "@turf/turf": "^5.1.6",
     "ajv": "^6.5.3",
     "ajv-keywords": "^3.2.0",
-    "auth0": "^2.27.1",
+    "auth0": "^2.44.1",
     "auth0-js": "^9.13.2",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
